@@ -3,120 +3,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feal.nun</title>
+<title>EGGSTER — Feal.nun</title>
 
 <style>
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
-    background: #ffffff;
-    color: #202020;
+    background: #fff;
+    color: #222;
     font-family: Arial, sans-serif;
 }
 
 header {
-    padding: 28px 7%;
-    border-bottom: 1px solid #eeeeee;
+    padding: 22px;
+    border-bottom: 1px solid #eee;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.logo {
-    font-size: 27px;
-    font-weight: 900;
-    letter-spacing: -1.5px;
+a {
+    color: #555;
+    text-decoration: none;
 }
 
-.tag {
-    color: #888;
-    font-size: 13px;
-}
+a:hover { color: #000; }
 
 main {
-    max-width: 950px;
-    margin: 75px auto;
-    padding: 0 22px;
-}
-
-.intro {
+    max-width: 760px;
+    margin: 55px auto;
+    padding: 20px;
     text-align: center;
-    margin-bottom: 65px;
 }
 
-.intro h1 {
-    font-size: clamp(42px, 8vw, 72px);
-    margin: 0 0 15px;
-    letter-spacing: -4px;
+h1 {
+    font-size: 55px;
+    letter-spacing: -3px;
+    margin-bottom: 8px;
 }
 
-.intro p {
-    color: #777;
-    font-size: 17px;
+.subtitle {
+    color: #888;
+    margin-bottom: 38px;
 }
 
-.games-title {
-    font-size: 14px;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 18px;
-}
-
-.game-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    border: 1px solid #e9e9e9;
-    border-radius: 18px;
-    padding: 28px;
-    transition: 0.2s;
-}
-
-.game-card:hover {
-    transform: translateY(-4px);
-    border-color: #bcbcbc;
-    box-shadow: 0 12px 35px #0000000d;
+.egg-button {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px;
 }
 
 .egg {
-    width: 65px;
-    height: 83px;
+    width: 130px;
+    height: 165px;
     background: #f5d9a8;
+    border: 3px solid #e5c38c;
     border-radius: 50% 50% 46% 46%;
-    margin-bottom: 22px;
-    transform: rotate(-8deg);
-    border: 2px solid #e6c48e;
+    transition: transform .2s;
 }
 
-.game-card h2 {
-    margin: 0 0 8px;
-    font-size: 25px;
+.egg-button:hover .egg {
+    transform: rotate(-8deg) scale(1.04);
 }
 
-.game-card p {
-    margin: 0;
-    color: #888;
-    line-height: 1.5;
+.egg-button:active .egg {
+    transform: scale(.94);
 }
 
-.status {
-    display: inline-block;
+.counter {
+    font-size: 18px;
+    margin: 18px;
+}
+
+.panel {
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 22px;
+    margin-top: 35px;
+    text-align: left;
+}
+
+.panel h2 {
+    margin-top: 0;
+    font-size: 19px;
+}
+
+.secrets {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.secret {
+    padding: 13px;
+    background: #f7f7f7;
+    border-radius: 9px;
+    color: #999;
+    font-size: 14px;
+}
+
+.secret.found {
+    background: #eaf7eb;
+    color: #287b35;
+}
+
+button.normal {
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 9px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+button.normal:hover {
+    background: #f5f5f5;
+}
+
+.message {
+    min-height: 25px;
+    color: #45834b;
     margin-top: 20px;
-    background: #f2f2f2;
-    padding: 7px 12px;
-    border-radius: 20px;
-    font-size: 12px;
 }
 
 footer {
+    margin-top: 50px;
     text-align: center;
     color: #aaa;
-    font-size: 12px;
-    padding: 40px 15px;
+    font-size: 13px;
+}
+
+@media(max-width:500px) {
+    h1 { font-size: 42px; }
+    .secrets { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -124,29 +145,176 @@ footer {
 <body>
 
 <header>
-    <div class="logo">Feal.nun</div>
-    <div class="tag">A place for curious minds</div>
+    <strong>Feal.nun</strong>
+    <a href="./index.html">Back to menu</a>
 </header>
 
 <main>
-    <section class="intro">
-        <h1>Explore the unusual.</h1>
-        <p>Small games, hidden secrets and unexpected discoveries.</p>
-    </section>
+    <h1>EGGSTER</h1>
+    <div class="subtitle">There are secrets hiding everywhere.</div>
 
-    <div class="games-title">Games</div>
-
-    <a class="game-card" href="./eggster.html">
+    <button class="egg-button" id="egg">
         <div class="egg"></div>
-        <h2>EGGSTER</h2>
-        <p>A world full of hidden secrets. How many can you discover?</p>
-        <span class="status">Available to play</span>
-    </a>
+    </button>
+
+    <div class="counter">
+        Clicks: <strong id="clicks">0</strong>
+    </div>
+
+    <div class="message" id="message">Something is waiting to be discovered.</div>
+
+    <div class="panel">
+        <h2>Secret collection</h2>
+        <div class="secrets" id="secrets"></div>
+        <p id="progress">0 / 8 secrets found</p>
+        <button class="normal" id="hint">Get a hint</button>
+        <div id="hintText"></div>
+    </div>
+
+    <footer>
+        EGGSTER — Feal.nun
+    </footer>
 </main>
 
-<footer>
-    Feal.nun — Made for curious minds.
-</footer>
+<script>
+const names = [
+    "Lucky Number",
+    "The Logo",
+    "Hidden Word",
+    "The Silence",
+    "The Footer",
+    "The Name",
+    "The Sequence",
+    "The Corner"
+];
+
+const hints = [
+    "Some numbers are luckier than others.",
+    "Look carefully at the name at the top.",
+    "A small word can open a secret.",
+    "Sometimes doing nothing is important.",
+    "The bottom of the page may hide something.",
+    "Try typing the website name.",
+    "Remember the classic arrow-key pattern.",
+    "One corner is not what it seems."
+];
+
+let found = JSON.parse(localStorage.getItem("fealnun-eggster-v2") || "[]");
+let clicks = 0;
+let logoClicks = 0;
+let footerClicks = 0;
+let hintIndex = 0;
+let lastActivity = Date.now();
+let keySequence = [];
+
+const $ = id => document.getElementById(id);
+
+function save() {
+    localStorage.setItem("fealnun-eggster-v2", JSON.stringify(found));
+}
+
+function discover(index) {
+    if (found.includes(index)) return;
+
+    found.push(index);
+    save();
+    render();
+
+    $("message").textContent = "Secret discovered: " + names[index] + "!";
+}
+
+function render() {
+    $("secrets").innerHTML = "";
+
+    names.forEach((name, i) => {
+        const item = document.createElement("div");
+        item.className = "secret" + (found.includes(i) ? " found" : "");
+        item.textContent = found.includes(i) ? name : "Unknown secret";
+        $("secrets").appendChild(item);
+    });
+
+    $("progress").textContent = found.length + " / 8 secrets found";
+}
+
+$("egg").addEventListener("click", () => {
+    clicks++;
+    $("clicks").textContent = clicks;
+    lastActivity = Date.now();
+
+    if (clicks === 7) discover(0);
+});
+
+document.querySelector("header strong").addEventListener("click", () => {
+    logoClicks++;
+    if (logoClicks >= 5) discover(1);
+});
+
+document.querySelector("footer").addEventListener("click", () => {
+    footerClicks++;
+    if (footerClicks >= 3) discover(4);
+});
+
+document.addEventListener("keydown", event => {
+    lastActivity = Date.now();
+
+    if (event.key.length === 1) {
+        const key = event.key.toLowerCase();
+
+        if (key === "e" || key === "g") {
+            window.typed = (window.typed || "") + key;
+        } else {
+            window.typed = "";
+        }
+
+        if (window.typed.endsWith("egg")) discover(2);
+        if (window.typed.endsWith("feal")) discover(5);
+    }
+
+    const allowed = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+
+    if (allowed.includes(event.key)) {
+        keySequence.push(event.key);
+        keySequence = keySequence.slice(-8);
+
+        const answer = [
+            "ArrowUp", "ArrowUp",
+            "ArrowDown", "ArrowDown",
+            "ArrowLeft", "ArrowRight",
+            "ArrowLeft", "ArrowRight"
+        ];
+
+        if (JSON.stringify(keySequence) === JSON.stringify(answer)) {
+            discover(6);
+        }
+    }
+});
+
+const corner = document.createElement("button");
+corner.style.position = "fixed";
+corner.style.top = "0";
+corner.style.left = "0";
+corner.style.width = "24px";
+corner.style.height = "24px";
+corner.style.opacity = "0";
+corner.style.border = "0";
+corner.style.cursor = "pointer";
+corner.setAttribute("aria-label", "Hidden corner");
+corner.onclick = () => discover(7);
+document.body.appendChild(corner);
+
+setInterval(() => {
+    if (Date.now() - lastActivity >= 10000) {
+        discover(3);
+    }
+}, 1000);
+
+$("hint").addEventListener("click", () => {
+    $("hintText").textContent = hints[hintIndex % hints.length];
+    hintIndex++;
+});
+
+render();
+</script>
 
 </body>
 </html>
