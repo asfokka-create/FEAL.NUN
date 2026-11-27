@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feal.nun</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: #202020;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    padding: 28px 7%;
+    border-bottom: 1px solid #eeeeee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+}
+
+.tag {
+    color: #888;
+    font-size: 13px;
+}
+
+main {
+    max-width: 950px;
+    margin: 75px auto;
+    padding: 0 22px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 65px;
+}
+
+.intro h1 {
+    font-size: clamp(42px, 8vw, 72px);
+    margin: 0 0 15px;
+    letter-spacing: -4px;
+}
+
+.intro p {
+    color: #777;
+    font-size: 17px;
+}
+
+.games-title {
+    font-size: 14px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.game-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #e9e9e9;
+    border-radius: 18px;
+    padding: 28px;
+    transition: 0.2s;
+}
+
+.game-card:hover {
+    transform: translateY(-4px);
+    border-color: #bcbcbc;
+    box-shadow: 0 12px 35px #0000000d;
+}
+
+.egg {
+    width: 65px;
+    height: 83px;
+    background: #f5d9a8;
+    border-radius: 50% 50% 46% 46%;
+    margin-bottom: 22px;
+    transform: rotate(-8deg);
+    border: 2px solid #e6c48e;
+}
+
+.game-card h2 {
+    margin: 0 0 8px;
+    font-size: 25px;
+}
+
+.game-card p {
+    margin: 0;
+    color: #888;
+    line-height: 1.5;
+}
+
+.status {
+    display: inline-block;
+    margin-top: 20px;
+    background: #f2f2f2;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+footer {
+    text-align: center;
+    color: #aaa;
+    font-size: 12px;
+    padding: 40px 15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Feal.nun</div>
+    <div class="tag">A place for curious minds</div>
+</header>
+
+<main>
+    <section class="intro">
+        <h1>Explore the unusual.</h1>
+        <p>Small games, hidden secrets and unexpected discoveries.</p>
+    </section>
+
+    <div class="games-title">Games</div>
+
+    <a class="game-card" href="./eggster.html">
+        <div class="egg"></div>
+        <h2>EGGSTER</h2>
+        <p>A world full of hidden secrets. How many can you discover?</p>
+        <span class="status">Available to play</span>
+    </a>
+</main>
+
+<footer>
+    Feal.nun — Made for curious minds.
+</footer>
+
+</body>
+</html>
