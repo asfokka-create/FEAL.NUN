@@ -3,71 +3,74 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EGGSTER — Feal.nun</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#fff;color:#202020;font-family:Arial,sans-serif}
-header{height:65px;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;padding:0 6%}
+body{margin:0;background:#fff;color:#222;font-family:Arial,sans-serif}
+header{height:65px;padding:0 6%;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between}
 .brand{font-size:23px;font-weight:900;cursor:pointer}
 a{color:inherit;text-decoration:none}
-main{max-width:900px;margin:35px auto;padding:15px}
-h1{font-size:48px;letter-spacing:-3px;margin:12px 0}
-.sub{color:#888;margin-bottom:25px}
-nav{display:flex;gap:8px;flex-wrap:wrap;margin:25px 0}
-nav button,.btn{border:1px solid #ddd;background:white;border-radius:10px;padding:11px 16px;cursor:pointer;font-weight:700}
-nav button.active,.btn.dark{background:#222;color:white;border-color:#222}
+main{max-width:900px;margin:35px auto;padding:16px}
+h1{font-size:52px;letter-spacing:-4px;margin:12px 0}
+.sub,.muted{color:#888}
+.sub{margin-bottom:25px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:25px 0}
+nav button,.btn{padding:11px 15px;border:1px solid #ddd;background:white;border-radius:9px;cursor:pointer;font-weight:bold}
+nav button.active,.btn.dark{background:#222;color:white}
 .page{display:none}
 .page.active{display:block}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
 .stat,.panel{border:1px solid #eee;border-radius:14px;padding:16px}
 .stat strong{display:block;font-size:24px;margin-top:7px}
-.muted{color:#888;font-size:13px}
-.egg-wrap{text-align:center;padding:22px}
+.egg-area{text-align:center;padding:30px}
 .egg-button{border:0;background:none;cursor:pointer}
-.egg{width:145px;height:180px;border-radius:50% 50% 46% 46%;background:linear-gradient(135deg,#ffe8b9,#e9c58c);border:3px solid #dcb77d;box-shadow:0 12px 25px #00000012;transition:.12s}
+.egg{width:140px;height:175px;border-radius:50% 50% 46% 46%;background:linear-gradient(135deg,#ffedca,#e8c58d);border:3px solid #dfbd86;transition:.15s}
 .egg-button:hover .egg{transform:rotate(-7deg) scale(1.04)}
-.egg-button:active .egg{transform:scale(.94)}
-.click-note{color:#888;margin-top:12px}
-.section-title{font-size:22px;margin:25px 0 14px}
+.egg-button:active .egg{transform:scale(.93)}
+.message{min-height:25px;text-align:center;color:#397c43;font-weight:bold;margin:12px}
+.section-title{font-size:23px;margin:25px 0 12px}
 .upgrade-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.upgrade{border:1px solid #eee;border-radius:13px;padding:16px}
-.upgrade h3{margin:0 0 7px}
+.upgrade{border:1px solid #eee;border-radius:12px;padding:16px}
+.upgrade h3{margin:0 0 8px}
 .upgrade p{font-size:13px;color:#888;min-height:30px}
-.upgrade button{width:100%;border:0;background:#222;color:white;padding:11px;border-radius:8px;cursor:pointer}
-.upgrade button:disabled{background:#ddd;color:#777;cursor:not-allowed}
-.collection-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.upgrade button{width:100%;padding:11px;background:#222;color:white;border:0;border-radius:8px;cursor:pointer}
+.upgrade button:disabled{background:#ddd;color:#777}
 .secret-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:20px}
-.secret-card{border:1px solid #eee;border-radius:12px;padding:10px 5px;text-align:center;min-width:0}
-.secret-logo{height:72px;border-radius:9px;background:#111;color:#111;display:flex;align-items:center;justify-content:center;font-size:35px;font-weight:900;margin-bottom:9px;position:relative;overflow:hidden}
-.secret-logo:after{content:"";position:absolute;width:17px;height:14px;border:3px solid #777;border-radius:4px;top:25px;left:calc(50% - 8px)}
-.secret-logo:before{content:"";position:absolute;width:9px;height:9px;border:3px solid #777;border-bottom:0;border-radius:9px 9px 0 0;top:14px;left:calc(50% - 4px)}
-.secret-card.unlocked .secret-logo{background:#f3f3f3;color:#222}
-.secret-card.unlocked .secret-logo:before,.secret-card.unlocked .secret-logo:after{display:none}
-.secret-name{font-size:12px;font-weight:700;min-height:28px}
-.rarity{font-size:10px;color:#999;margin-top:5px}
-.message{min-height:24px;text-align:center;color:#43814b;font-weight:700}
-.rebirth-box{text-align:center;padding:25px}
-.rebirth-box h2{font-size:27px}
-.rebirth-box button{margin-top:15px}
-footer{text-align:center;color:#aaa;padding:45px 10px;font-size:12px}
+.secret-card{border:1px solid #eee;border-radius:11px;padding:9px 5px;text-align:center;cursor:pointer}
+.secret-logo{height:68px;background:#101010;border-radius:8px;color:#101010;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:bold}
+.secret-card.unlocked .secret-logo{background:#f0f0f0;color:#222}
+.secret-name{font-size:11px;font-weight:bold;margin-top:8px;min-height:26px}
+.rarity{font-size:10px;color:#999;margin-top:4px}
+.collection-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.terminal{border:1px solid #e7e7e7;border-radius:13px;padding:18px;margin-top:22px}
+.terminal input{width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;font-size:16px;margin:10px 0}
+.terminal button{padding:11px 15px;background:#222;color:white;border:0;border-radius:8px;cursor:pointer}
+.clue{font-size:13px;color:#888;line-height:1.6}
+.corner{position:fixed;width:20px;height:20px;opacity:0;z-index:10;cursor:pointer}
+#c1{top:0;left:0}#c2{top:0;right:0}#c3{bottom:0;left:0}#c4{bottom:0;right:0}
+.hidden-dot{display:inline-block;width:7px;height:7px;background:#fff;border:1px solid #fff;cursor:pointer}
+.side-code{position:fixed;right:0;top:48%;writing-mode:vertical-rl;color:#fff;background:#fff;border:0;width:17px;height:55px;cursor:pointer}
+.side-code:focus{color:#222}
+.rebirth{text-align:center;padding:28px}
+footer{text-align:center;color:#aaa;font-size:12px;padding:45px 10px;cursor:pointer}
 @media(max-width:600px){
- h1{font-size:39px}
- .stats{grid-template-columns:1fr 1fr}
+ h1{font-size:42px}.stats{grid-template-columns:1fr 1fr}
  .secret-grid{grid-template-columns:repeat(4,1fr)}
  .upgrade-list{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
+
 <header>
  <div class="brand" id="brand">Feal.nun</div>
  <a href="./index.html">Back to menu</a>
 </header>
 
 <main>
- <h1>EGGSTER</h1>
- <div class="sub">Click, upgrade, rebirth and discover all 48 secrets.</div>
+ <h1 id="title">EGGSTER</h1>
+ <div class="sub">A little game. A lot of secrets.</div>
 
  <nav>
   <button class="active" data-page="play">Play</button>
@@ -81,384 +84,434 @@ footer{text-align:center;color:#aaa;padding:45px 10px;font-size:12px}
  <section class="page active" id="play">
   <div class="stats">
    <div class="stat"><span class="muted">Egg Coins</span><strong id="coins">0</strong></div>
-   <div class="stat"><span class="muted">Per Click</span><strong id="perClick">1</strong></div>
-   <div class="stat"><span class="muted">Per Second</span><strong id="perSecond">0</strong></div>
-   <div class="stat"><span class="muted">Rebirths</span><strong id="rebirthCount">0</strong></div>
-   <div class="stat"><span class="muted">Secrets Found</span><strong id="secretCount">0 / 48</strong></div>
-   <div class="stat"><span class="muted">Total Clicks</span><strong id="totalClicks">0</strong></div>
+   <div class="stat"><span class="muted">Per Click</span><strong id="power">1</strong></div>
+   <div class="stat"><span class="muted">Per Second</span><strong id="auto">0</strong></div>
+   <div class="stat"><span class="muted">Rebirths</span><strong id="rebirths">0</strong></div>
+   <div class="stat"><span class="muted">Secrets Found</span><strong id="foundCount">0 / 48</strong></div>
+   <div class="stat"><span class="muted">Total Clicks</span><strong id="clickCount">0</strong></div>
   </div>
 
-  <div class="egg-wrap">
+  <div class="egg-area">
    <button class="egg-button" id="eggButton" aria-label="Click the egg">
     <div class="egg"></div>
    </button>
-   <div class="click-note">Click the egg to earn Egg Coins.</div>
+   <p class="muted">Click the egg to earn coins.</p>
   </div>
+
   <div class="panel">
-   <strong>Your progress</strong>
-   <p class="muted">Discover secrets by exploring the game. Some are hidden in unexpected places.</p>
-   <button class="btn" id="openCollection">Open Secret Collection</button>
+   <strong>Something is hidden here.</strong>
+   <p class="muted">Look around. Click things. Try unusual words. Not everything is what it seems.</p>
+   <button class="btn" id="collectionButton">View Secret Collection</button>
   </div>
+
+  <div class="terminal">
+   <strong>Unknown terminal</strong>
+   <p class="clue">A place to enter numbers, words and answers. The clues are scattered around the game.</p>
+   <input id="answer" placeholder="Enter a number or answer..." autocomplete="off">
+   <button id="submitAnswer">Submit</button>
+   <p class="clue" id="terminalMessage">The terminal is waiting.</p>
+  </div>
+  <p class="muted">There is a tiny detail hidden near this sentence.<span class="hidden-dot" id="tinyDot"></span></p>
  </section>
 
  <section class="page" id="upgrades">
   <h2 class="section-title">Upgrades</h2>
-  <p class="muted">Spend Egg Coins to improve your egg.</p>
+  <p class="muted">Spend coins to increase your power.</p>
   <div class="upgrade-list" id="upgradeList"></div>
  </section>
 
  <section class="page" id="collection">
-  <div class="collection-top">
+  <div class="collection-head">
    <div>
     <h2 class="section-title">Secret Collection</h2>
-    <div class="muted">Find all 48 hidden logos.</div>
+    <p class="muted">48 hidden discoveries. Each has its own symbol.</p>
    </div>
-   <strong id="collectionProgress">0 / 48</strong>
+   <strong id="collectionCount">0 / 48</strong>
   </div>
   <div class="secret-grid" id="secretGrid"></div>
+  <p class="clue">Tap a locked secret to receive a small hint.</p>
  </section>
 
  <section class="page" id="rebirth">
-  <div class="panel rebirth-box">
+  <div class="panel rebirth">
    <h2>Rebirth</h2>
-   <p>Start again with a permanent earning bonus.</p>
+   <p class="muted">Reset your upgrades and coins to gain a permanent bonus.</p>
    <div class="stat">
-    <span class="muted">Rebirth requirement</span>
+    <span class="muted">Required coins</span>
     <strong id="rebirthCost">100,000</strong>
    </div>
-   <p class="muted" id="rebirthBonus">Current bonus: x1</p>
+   <p id="rebirthBonus" class="muted">Permanent bonus: x1</p>
    <button class="btn dark" id="rebirthButton">REBIRTH</button>
-   <p class="muted">Your discovered secrets will never be lost.</p>
+   <p class="muted">Your discovered secrets will stay unlocked.</p>
   </div>
  </section>
 </main>
 
-<footer>EGGSTER — A Feal.nun experiment</footer>
+<footer id="footer">EGGSTER — Feal.nun</footer>
+
+<button class="corner" id="c1" aria-label="corner"></button>
+<button class="corner" id="c2" aria-label="corner"></button>
+<button class="corner" id="c3" aria-label="corner"></button>
+<button class="corner" id="c4" aria-label="corner"></button>
+<button class="side-code" id="sideCode" aria-label="side number">314</button>
 
 <script>
-const SAVE_KEY = "fealnun_eggster_48_v1";
+const SAVE_KEY="fealnun_eggster_mystery_v2";
 
-const defaultState = {
- coins:0,
- totalCoins:0,
- clicks:0,
- totalClicks:0,
- rebirths:0,
- found:[],
- upgrades:{},
- logoClicks:0,
- collectionVisits:0,
- playVisits:0,
- hintClicks:0,
- typedWords:[],
- keyPattern:[],
- idleSeconds:0,
- eggStreak:0,
- lastClick:0,
- specialClicks:0,
- tabVisits:[],
- rebirthsMade:0
+const defaults={
+ coins:0,totalCoins:0,clicks:0,rebirths:0,found:[],
+ upgrades:{},brandClicks:0,titleClicks:0,footerClicks:0,
+ eggClicks:0,coinClicks:0,logoDouble:false,typed:[],
+ arrows:[],wasd:[],tabTrail:[],idle:0,scrollBottom:false,
+ scrollTop:false,sideOpened:false,quickClicks:0,lastEgg:0,
+ hintCount:0,terminalAttempts:0,secretTyping:"",visitedPages:[],
+ eggClickPattern:[],numberAttempts:0
 };
 
 let state;
-try {
- const saved = JSON.parse(localStorage.getItem(SAVE_KEY));
- state = {...defaultState,...(saved || {})};
- state.upgrades = {...defaultState.upgrades,...(state.upgrades || {})};
- state.found = Array.isArray(state.found) ? state.found : [];
-} catch(e) {
- state = {...defaultState};
-}
+try{
+ state={...defaults,...JSON.parse(localStorage.getItem(SAVE_KEY)||"{}")};
+ state.upgrades={...defaults.upgrades,...(state.upgrades||{})};
+ state.found=Array.isArray(state.found)?state.found:[];
+ state.typed=Array.isArray(state.typed)?state.typed:[];
+}catch(e){state={...defaults};}
 
-const upgrades = [
- {id:"strong",name:"Stronger Click",desc:"+1 base coin per click.",base:25},
- {id:"double",name:"Double Click",desc:"Adds more power to every click.",base:150},
- {id:"golden",name:"Golden Egg",desc:"Boosts your click earnings.",base:750},
- {id:"auto",name:"Auto Clicker",desc:"Earn coins automatically.",base:1200},
- {id:"super",name:"Super Clicker",desc:"A powerful click improvement.",base:4500},
- {id:"lucky",name:"Lucky Egg",desc:"Increases all your earnings.",base:12000},
- {id:"magnet",name:"Coin Magnet",desc:"Pulls in extra coins every second.",base:30000},
- {id:"mega",name:"Mega Multiplier",desc:"A huge boost to click power.",base:80000},
- {id:"finder",name:"Secret Finder",desc:"Unlocks a few extra discovery chances.",base:150000}
-];
-
-const symbols = [
+const symbols=[
  "◈","✦","◇","◎","△","□","✧","⬡",
- "☼","✶","♢","⊙","⌘","♜","♧","♢",
- "◉","✷","⬢","⌬","♧","✣","◌","✹",
+ "☼","✶","♢","⊙","⌘","♜","♧","♤",
+ "◉","✷","⬢","⌬","♣","✣","◌","✹",
  "♔","♕","♖","♗","♘","♙","♧","♤",
  "☾","☽","⊗","⊕","⊛","⌖","⌑","⌗",
  "✺","✵","✴","✳","❖","◬","◭","◮"
 ];
 
-const secretData = [
- ["First Touch","Common",s=>s.totalClicks>=1],
- ["Getting Started","Common",s=>s.totalClicks>=10],
- ["Click Expert","Common",s=>s.totalClicks>=50],
- ["Busy Hands","Common",s=>s.totalClicks>=100],
- ["Click Machine","Uncommon",s=>s.totalClicks>=250],
- ["Egg Addict","Uncommon",s=>s.totalClicks>=500],
- ["One Thousand","Rare",s=>s.totalClicks>=1000],
- ["Click Legend","Epic",s=>s.totalClicks>=5000],
- ["Tiny Fortune","Common",s=>s.totalCoins>=100],
- ["Coin Collector","Common",s=>s.totalCoins>=1000],
- ["Big Wallet","Uncommon",s=>s.totalCoins>=10000],
- ["Treasure Hunter","Rare",s=>s.totalCoins>=100000],
- ["Millionaire","Epic",s=>s.totalCoins>=1000000],
- ["First Upgrade","Common",s=>upgradeTotal(s)>=1],
- ["Shop Visitor","Common",s=>upgradeTotal(s)>=3],
- ["Upgrade Fan","Uncommon",s=>upgradeTotal(s)>=10],
- ["Upgrade Master","Rare",s=>upgradeTotal(s)>=25],
- ["Full Power","Epic",s=>upgradeTotal(s)>=50],
- ["The Logo","Uncommon",s=>s.logoClicks>=5],
- ["Secret Menu","Uncommon",s=>s.collectionVisits>=1],
- ["Explorer","Common",s=>s.tabVisits.length>=3],
- ["The Return","Common",s=>s.playVisits>=3],
- ["A Little Patience","Common",s=>s.idleSeconds>=10],
- ["Silence Master","Rare",s=>s.idleSeconds>=60],
- ["The Hint","Common",s=>s.hintClicks>=1],
- ["Curious Mind","Uncommon",s=>s.hintClicks>=5],
- ["Hidden Word","Uncommon",s=>s.typedWords.includes("egg")],
- ["Website Name","Rare",s=>s.typedWords.includes("feal")],
- ["Secret Code","Epic",s=>s.typedWords.includes("secret")],
- ["Classic Pattern","Rare",s=>s.keyPattern>=1],
- ["Double Tap","Common",s=>s.eggStreak>=2],
- ["Quick Fingers","Uncommon",s=>s.eggStreak>=10],
- ["Lucky Seven","Uncommon",s=>s.totalClicks>=7],
- ["Thirteen","Rare",s=>s.totalClicks>=13],
- ["Twenty Five","Rare",s=>s.totalClicks>=25],
- ["A Hundred Seconds","Epic",s=>s.idleSeconds>=100],
- ["First Rebirth","Rare",s=>s.rebirths>=1],
- ["Second Chance","Epic",s=>s.rebirths>=2],
- ["Rebirth Veteran","Legendary",s=>s.rebirths>=5],
- ["Rebirth Master","Mythic",s=>s.rebirths>=10],
- ["Golden Touch","Epic",s=>s.upgrades.golden>=5],
- ["Auto World","Rare",s=>s.upgrades.auto>=1],
- ["Mega Power","Legendary",s=>s.upgrades.mega>=1],
- ["Secret Seeker","Legendary",s=>s.upgrades.finder>=1],
- ["All Rounder","Epic",s=>upgradeTypes(s)>=5],
- ["Collector's Pride","Legendary",s=>s.found.length>=24],
- ["Almost There","Mythic",s=>s.found.length>=40],
- ["EGGSTER","Mythic",s=>s.found.length>=47],
- ["The Ultimate Secret","Mythic",s=>s.found.length>=48]
+const secrets=[
+ ["The Title","Common","Click the EGGSTER title seven times."],
+ ["The Logo","Common","The website name has something to say. Click it five times."],
+ ["The Footer","Common","Visit the very bottom of the page. Click the footer three times."],
+ ["Northwest","Common","Try the very top-left corner."],
+ ["Northeast","Common","Try the very top-right corner."],
+ ["Southwest","Common","Try the bottom-left corner."],
+ ["Southeast","Common","Try the bottom-right corner."],
+ ["The Number","Uncommon","A number is written along the right edge. Enter it in the terminal."],
+ ["Website Word","Common","Type the website name into the terminal."],
+ ["Egg Word","Common","Type the game's subject into the terminal."],
+ ["Backward","Uncommon","Write EGG backwards."],
+ ["Silence","Uncommon","Wait without touching anything for 20 seconds."],
+ ["The Secret Word","Rare","Enter the word that describes a hidden discovery."],
+ ["Open Sesame","Rare","A famous phrase opens many doors."],
+ ["Classic Code","Rare","Try the classic eight-direction keyboard code."],
+ ["WASD","Uncommon","Try the four familiar movement keys in order."],
+ ["Lucky Seven","Common","Click the egg exactly seven times."],
+ ["Coin Watcher","Uncommon","Click the Egg Coins counter ten times."],
+ ["Collection Visitor","Common","Open the collection three times."],
+ ["The Tourist","Uncommon","Visit all four game tabs."],
+ ["Tiny Detail","Uncommon","There is a tiny dot near the bottom of the Play page."],
+ ["Double Trouble","Uncommon","Double-click the website name."],
+ ["Quick Egg","Rare","Click the egg three times very quickly."],
+ ["The Terminal","Common","Submit an answer to the terminal."],
+ ["Shadow","Uncommon","What follows you around but disappears in the dark?"],
+ ["Echo","Uncommon","What repeats your words but never speaks first?"],
+ ["Map","Rare","What has cities but no houses, rivers but no water?"],
+ ["Clock","Uncommon","What has hands but cannot clap?"],
+ ["Key","Rare","What opens a lock but is not a door?"],
+ ["Nothing","Rare","What is greater than everything and less than nothing?"],
+ ["Tomorrow","Epic","What is always coming but never arrives today?"],
+ ["Book","Uncommon","What has pages but is not a website?"],
+ ["Fire","Uncommon","What gets bigger when fed but dies when given water?"],
+ ["Water","Uncommon","What can fill a room but takes no space?"],
+ ["Time","Epic","What can fly without wings and never return?"],
+ ["Light","Rare","What can fill a room but weighs nothing?"],
+ ["Darkness","Rare","What appears when light disappears?"],
+ ["Memory","Epic","What can be kept but cannot be held?"],
+ ["Mirror","Rare","What shows your face but has no eyes?"],
+ ["The Alphabet","Uncommon","Enter the first three letters of the alphabet."],
+ ["Prime","Rare","Enter the smallest prime number."],
+ ["Perfect Square","Uncommon","Enter the square of 12."],
+ ["Halfway","Rare","What number is halfway between 0 and 100?"],
+ ["The Loop","Epic","Enter the word LOOP backwards."],
+ ["Final Door","Legendary","Enter the phrase: open the final door."],
+ ["Collector","Epic","Find 24 other secrets."],
+ ["Almost All","Mythic","Find 40 other secrets."],
+ ["EGGSTER Master","Mythic","Find 47 other secrets."]
 ];
 
-function upgradeTotal(s){
- return Object.values(s.upgrades).reduce((a,b)=>a+(Number(b)||0),0);
-}
-function upgradeTypes(s){
- return Object.values(s.upgrades).filter(v=>v>0).length;
-}
-function costOf(u){
- return Math.floor(u.base*Math.pow(1.65,state.upgrades[u.id]||0));
-}
-function multiplier(){
- return (1+state.rebirths*0.5) *
-  (1+(state.upgrades.lucky||0)*0.25) *
-  (1+(state.upgrades.magnet||0)*0.1);
-}
-function clickPower(){
- return (1+
-  (state.upgrades.strong||0)+
-  (state.upgrades.double||0)*3+
-  (state.upgrades.golden||0)*10+
-  (state.upgrades.super||0)*30+
-  (state.upgrades.mega||0)*150) * multiplier();
-}
-function autoPower(){
- return ((state.upgrades.auto||0)*2+
-  (state.upgrades.magnet||0)*3) * multiplier();
-}
 function save(){
  localStorage.setItem(SAVE_KEY,JSON.stringify(state));
 }
-function earn(amount){
- amount=Math.max(0,Math.floor(amount));
- state.coins+=amount;
- state.totalCoins+=amount;
- checkSecrets();
- update();
+function msg(t){
+ document.getElementById("message").textContent=t;
 }
-function notify(message){
- document.getElementById("message").textContent=message;
-}
-function unlock(index){
- if(state.found.includes(index))return;
- state.found.push(index);
- notify("SECRET DISCOVERED: "+secretData[index][0]);
+function unlock(i){
+ if(state.found.includes(i))return;
+ state.found.push(i);
  save();
  renderCollection();
  update();
+ msg("SECRET UNLOCKED: "+secrets[i][0]);
 }
-function checkSecrets(){
- secretData.forEach((secret,index)=>{
-  if(!state.found.includes(index) && secret[2](state)){
-   unlock(index);
-  }
- });
+function checkProgress(){
+ if(state.clicks>=7)unlock(16);
+ if(state.found.length>=24)unlock(44);
+ if(state.found.length>=40)unlock(45);
+ if(state.found.length>=47)unlock(46);
+}
+function multiplier(){
+ return (1+state.rebirths*.5)*(1+(state.upgrades.lucky||0)*.25);
+}
+function clickPower(){
+ return (1+(state.upgrades.strong||0)+(state.upgrades.double||0)*3+
+ (state.upgrades.golden||0)*10+(state.upgrades.super||0)*30+
+ (state.upgrades.mega||0)*150)*multiplier();
+}
+function autoPower(){
+ return ((state.upgrades.auto||0)*2+(state.upgrades.magnet||0)*3)*multiplier();
+}
+function earn(n){
+ n=Math.floor(n);
+ state.coins+=n;
+ state.totalCoins+=n;
+ update();
 }
 function update(){
  document.getElementById("coins").textContent=Math.floor(state.coins).toLocaleString();
- document.getElementById("perClick").textContent=Math.floor(clickPower()).toLocaleString();
- document.getElementById("perSecond").textContent=Math.floor(autoPower()).toLocaleString();
- document.getElementById("rebirthCount").textContent=state.rebirths;
- document.getElementById("secretCount").textContent=state.found.length+" / 48";
- document.getElementById("totalClicks").textContent=state.totalClicks.toLocaleString();
- document.getElementById("collectionProgress").textContent=state.found.length+" / 48";
+ document.getElementById("power").textContent=Math.floor(clickPower()).toLocaleString();
+ document.getElementById("auto").textContent=Math.floor(autoPower()).toLocaleString();
+ document.getElementById("rebirths").textContent=state.rebirths;
+ document.getElementById("clickCount").textContent=state.clicks;
+ document.getElementById("foundCount").textContent=state.found.length+" / 48";
+ document.getElementById("collectionCount").textContent=state.found.length+" / 48";
  document.getElementById("rebirthCost").textContent=rebirthCost().toLocaleString();
- document.getElementById("rebirthBonus").textContent="Current bonus: x"+multiplier().toFixed(2);
- document.getElementById("rebirthButton").disabled=state.coins<rebirthCost();
- document.getElementById("rebirthButton").style.opacity=state.coins<rebirthCost()?".45":"1";
-}
-function renderUpgrades(){
- const list=document.getElementById("upgradeList");
- list.innerHTML="";
- upgrades.forEach(u=>{
-  const level=state.upgrades[u.id]||0;
-  const cost=costOf(u);
-  const card=document.createElement("div");
-  card.className="upgrade";
-  const title=document.createElement("h3");
-  title.textContent=u.name+" — Lv. "+level;
-  const desc=document.createElement("p");
-  desc.textContent=u.desc;
-  const button=document.createElement("button");
-  button.textContent="Buy — "+cost.toLocaleString()+" coins";
-  button.disabled=state.coins<cost;
-  button.onclick=()=>{
-   if(state.coins<cost)return;
-   state.coins-=cost;
-   state.upgrades[u.id]=level+1;
-   notify(u.name+" upgraded!");
-   checkSecrets();
-   save();
-   renderUpgrades();
-   update();
-  };
-  card.append(title,desc,button);
-  list.appendChild(card);
- });
+ document.getElementById("rebirthBonus").textContent="Permanent bonus: x"+multiplier().toFixed(2);
+ const rb=document.getElementById("rebirthButton");
+ rb.disabled=state.coins<rebirthCost();
+ rb.style.opacity=rb.disabled?".45":"1";
 }
 function renderCollection(){
  const grid=document.getElementById("secretGrid");
  grid.innerHTML="";
- secretData.forEach((secret,index)=>{
-  const isFound=state.found.includes(index);
+ secrets.forEach((s,i)=>{
+  const yes=state.found.includes(i);
   const card=document.createElement("div");
-  card.className="secret-card"+(isFound?" unlocked":"");
+  card.className="secret-card"+(yes?" unlocked":"");
   const logo=document.createElement("div");
   logo.className="secret-logo";
-  logo.textContent=isFound?symbols[index]:"";
+  logo.textContent=yes?symbols[i]:"";
   const name=document.createElement("div");
   name.className="secret-name";
-  name.textContent=isFound?secret[0]:"Locked Secret #"+(index+1);
+  name.textContent=yes?s[0]:"Locked #"+(i+1);
   const rarity=document.createElement("div");
   rarity.className="rarity";
-  rarity.textContent=isFound?secret[1]:"???";
+  rarity.textContent=yes?s[1]:"???";
   card.append(logo,name,rarity);
+  card.addEventListener("click",()=>{
+   if(yes)return;
+   state.hintCount++;
+   msg("HINT: "+s[2]);
+   if(state.hintCount>=5)unlock(25);
+   save();
+  });
   grid.appendChild(card);
  });
 }
-function rebirthCost(){
- return Math.floor(100000*Math.pow(5,state.rebirths));
+const upgradeData=[
+ ["strong","Stronger Click","Add 1 coin per click.",25],
+ ["double","Double Click","Add 3 click power.",150],
+ ["golden","Golden Egg","Add 10 click power.",750],
+ ["auto","Auto Clicker","Earn 2 coins every second.",1200],
+ ["super","Super Clicker","Add 30 click power.",4500],
+ ["lucky","Lucky Egg","Increase all earnings.",12000],
+ ["magnet","Coin Magnet","Earn 3 extra coins per second.",30000],
+ ["mega","Mega Multiplier","Add 150 click power.",80000],
+ ["finder","Secret Finder","A special upgrade for collectors.",150000]
+];
+function price(u){
+ return Math.floor(u[3]*Math.pow(1.65,state.upgrades[u[0]]||0));
 }
-function doRebirth(){
- if(state.coins<rebirthCost())return;
- state.coins=0;
- state.upgrades={};
- state.rebirths++;
- state.rebirthsMade++;
- notify("REBIRTH COMPLETE! Your permanent bonus increased.");
- checkSecrets();
- save();
- renderUpgrades();
- update();
+function renderUpgrades(){
+ const list=document.getElementById("upgradeList");
+ list.innerHTML="";
+ upgradeData.forEach(u=>{
+  const level=state.upgrades[u[0]]||0;
+  const cost=price(u);
+  const card=document.createElement("div");
+  card.className="upgrade";
+  const h=document.createElement("h3");
+  h.textContent=u[1]+" — Lv. "+level;
+  const p=document.createElement("p");
+  p.textContent=u[2];
+  const b=document.createElement("button");
+  b.textContent="Buy — "+cost.toLocaleString()+" coins";
+  b.disabled=state.coins<cost;
+  b.onclick=()=>{
+   if(state.coins<cost)return;
+   state.coins-=cost;
+   state.upgrades[u[0]]=level+1;
+   if(u[0]==="finder")unlock(42);
+   save();renderUpgrades();update();
+   msg(u[1]+" upgraded.");
+  };
+  card.append(h,p,b);
+  list.appendChild(card);
+ });
 }
 function showPage(page){
  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
  document.getElementById(page).classList.add("active");
  document.querySelector('[data-page="'+page+'"]').classList.add("active");
- if(!state.tabVisits.includes(page))state.tabVisits.push(page);
- if(page==="collection")state.collectionVisits++;
- if(page==="play")state.playVisits++;
- checkSecrets();
+ if(!state.visitedPages.includes(page))state.visitedPages.push(page);
+ if(page==="collection"){
+  state.collectionVisits++;
+  if(state.collectionVisits>=3)unlock(18);
+ }
+ if(state.visitedPages.length>=4)unlock(19);
  save();
 }
-document.querySelectorAll("nav button").forEach(button=>{
- button.addEventListener("click",()=>showPage(button.dataset.page));
-});
-document.getElementById("openCollection").onclick=()=>showPage("collection");
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+document.getElementById("collectionButton").onclick=()=>showPage("collection");
 
 document.getElementById("eggButton").addEventListener("click",()=>{
  const now=Date.now();
- if(now-state.lastClick<900)state.eggStreak++;
- else state.eggStreak=1;
- state.lastClick=now;
+ if(now-state.lastEgg<700)state.quickClicks++;
+ else state.quickClicks=1;
+ state.lastEgg=now;
  state.clicks++;
- state.totalClicks++;
- state.idleSeconds=0;
+ state.eggClicks++;
  earn(clickPower());
- checkSecrets();
+ if(state.eggClicks===7)unlock(16);
+ if(state.quickClicks>=3)unlock(22);
+ checkProgress();
  save();
+ renderUpgrades();
 });
 
+document.getElementById("title").addEventListener("click",()=>{
+ state.titleClicks++;
+ if(state.titleClicks>=7)unlock(0);
+});
 document.getElementById("brand").addEventListener("click",()=>{
- state.logoClicks++;
- checkSecrets();
- save();
- notify("The logo might be hiding something.");
+ state.brandClicks++;
+ if(state.brandClicks>=5)unlock(1);
 });
+document.getElementById("brand").addEventListener("dblclick",()=>unlock(21));
+document.getElementById("footer").addEventListener("click",()=>{
+ state.footerClicks++;
+ if(state.footerClicks>=3)unlock(2);
+});
+["c1","c2","c3","c4"].forEach((id,i)=>{
+ document.getElementById(id).onclick=()=>unlock(3+i);
+});
+document.getElementById("sideCode").addEventListener("click",()=>{
+ state.sideOpened=true;
+ document.getElementById("terminalMessage").textContent="The number is 314. Where should it go?";
+});
+document.getElementById("tinyDot").onclick=()=>unlock(20);
 
-document.getElementById("rebirthButton").onclick=doRebirth;
-
-document.addEventListener("keydown",event=>{
- if(event.key.length===1){
-  const key=event.key.toLowerCase();
-  state.typedWords=(state.typedWords||[]);
-  window.secretTyping=(window.secretTyping||"")+key;
-  window.secretTyping=window.secretTyping.slice(-20);
-  ["egg","feal","secret"].forEach(word=>{
-   if(window.secretTyping.endsWith(word) && !state.typedWords.includes(word)){
-    state.typedWords.push(word);
-    notify("A hidden word was discovered.");
-    checkSecrets();
-    save();
-   }
-  });
- }
- const pattern=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight"];
- if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(event.key)){
-  state.keyPattern=(state.keyPattern||[]);
-  state.keyPattern.push(event.key);
-  state.keyPattern=state.keyPattern.slice(-8);
-  if(JSON.stringify(state.keyPattern)===JSON.stringify(pattern)){
-   state.keyPattern=1;
-   notify("Classic pattern discovered!");
-   checkSecrets();
-   save();
+const answers={
+ "314":7,"feal":8,"egg":9,"gge":10,
+ "secret":12,"opensesame":13,
+ "shadow":24,"echo":25,"map":26,"clock":27,
+ "key":28,"nothing":29,"tomorrow":30,"book":31,
+ "fire":32,"water":33,"time":34,"light":35,
+ "darkness":36,"memory":37,"mirror":38,
+ "abc":39,"2":40,"144":41,"50":42,
+ "pool":43,"openthefinaldoor":44
+};
+document.getElementById("submitAnswer").onclick=()=>{
+ const input=document.getElementById("answer");
+ const value=input.value.toLowerCase().trim().replace(/[^a-z0-9]/g,"");
+ state.terminalAttempts++;
+ if(value==="314"&&state.sideOpened){
+  unlock(7);
+ }else if(answers[value]!==undefined){
+  const id=answers[value];
+  if(id===44&&state.found.length<44){
+   document.getElementById("terminalMessage").textContent="The final door is not ready yet.";
+  }else{
+   unlock(id);
+   document.getElementById("terminalMessage").textContent="The terminal accepted your answer.";
   }
+ }else{
+  document.getElementById("terminalMessage").textContent="Nothing happened. Keep looking for clues.";
  }
+ if(state.terminalAttempts>=1)unlock(23);
+ if(value==="rorrim")unlock(10);
+ if(value==="loop")unlock(43);
+ if(value==="openthefinaldoor")unlock(44);
+ input.value="";
+ save();
+};
+
+let typing="";
+document.addEventListener("keydown",e=>{
+ if(e.key.length===1){
+  typing=(typing+e.key.toLowerCase()).slice(-30);
+  if(typing.includes("feal"))unlock(8);
+  if(typing.includes("egg"))unlock(9);
+  if(typing.includes("rorrim"))unlock(10);
+  if(typing.includes("silence"))unlock(11);
+  if(typing.includes("secret"))unlock(12);
+  if(typing.includes("opensesame"))unlock(13);
+ }
+ const konami=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight"];
+ if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.key)){
+  state.arrows.push(e.key);state.arrows=state.arrows.slice(-8);
+  if(JSON.stringify(state.arrows)===JSON.stringify(konami))unlock(14);
+ }
+ const wasd=["w","a","s","d"];
+ if("wasd".includes(e.key.toLowerCase())&&e.key.length===1){
+  state.wasd.push(e.key.toLowerCase());state.wasd=state.wasd.slice(-4);
+  if(JSON.stringify(state.wasd)===JSON.stringify(wasd))unlock(15);
+ }
+ save();
 });
 
-let lastActivity=Date.now();
-document.addEventListener("click",()=>{lastActivity=Date.now();});
-document.addEventListener("keydown",()=>{lastActivity=Date.now();});
+document.getElementById("coins").addEventListener("click",()=>{
+ state.coinClicks++;
+ if(state.coinClicks>=10)unlock(17);
+});
+window.addEventListener("scroll",()=>{
+ const bottom=window.innerHeight+window.scrollY>=document.body.scrollHeight-5;
+ if(bottom){state.scrollBottom=true;}
+ if(state.scrollBottom&&window.scrollY<10){state.scrollTop=true;unlock(46);}
+ save();
+});
 
+function rebirthCost(){
+ return Math.floor(100000*Math.pow(5,state.rebirths));
+}
+document.getElementById("rebirthButton").onclick=()=>{
+ if(state.coins<rebirthCost())return;
+ state.coins=0;
+ state.upgrades={};
+ state.rebirths++;
+ save();renderUpgrades();update();
+ msg("Rebirth complete. Your permanent bonus increased.");
+ if(state.rebirths>=1)unlock(36);
+ if(state.rebirths>=2)unlock(37);
+ if(state.rebirths>=5)unlock(38);
+};
+let idleStart=Date.now();
+let idleAwarded=false;
+["click","keydown","mousemove","touchstart","scroll"].forEach(event=>{
+ document.addEventListener(event,()=>{idleStart=Date.now();idleAwarded=false;},{passive:true});
+});
 setInterval(()=>{
- const income=autoPower();
- if(income>0)earn(income);
- if(Date.now()-lastActivity>=1000){
-  state.idleSeconds++;
-  checkSecrets();
+ if(Date.now()-idleStart>=20000&&!idleAwarded){
+  idleAwarded=true;state.idle++;
+  unlock(11);save();
  }
+ if(autoPower()>0)earn(autoPower());
+ renderUpgrades();
+ update();
  save();
 },1000);
 
-renderUpgrades();
 renderCollection();
+renderUpgrades();
 update();
-checkSecrets();
+checkProgress();
 </script>
 </body>
 </html>
