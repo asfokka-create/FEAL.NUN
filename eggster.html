@@ -1,320 +1,464 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EGGSTER — Feal.nun</title>
-
 <style>
-* { box-sizing: border-box; }
-
-body {
-    margin: 0;
-    background: #fff;
-    color: #222;
-    font-family: Arial, sans-serif;
-}
-
-header {
-    padding: 22px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-a {
-    color: #555;
-    text-decoration: none;
-}
-
-a:hover { color: #000; }
-
-main {
-    max-width: 760px;
-    margin: 55px auto;
-    padding: 20px;
-    text-align: center;
-}
-
-h1 {
-    font-size: 55px;
-    letter-spacing: -3px;
-    margin-bottom: 8px;
-}
-
-.subtitle {
-    color: #888;
-    margin-bottom: 38px;
-}
-
-.egg-button {
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    padding: 10px;
-}
-
-.egg {
-    width: 130px;
-    height: 165px;
-    background: #f5d9a8;
-    border: 3px solid #e5c38c;
-    border-radius: 50% 50% 46% 46%;
-    transition: transform .2s;
-}
-
-.egg-button:hover .egg {
-    transform: rotate(-8deg) scale(1.04);
-}
-
-.egg-button:active .egg {
-    transform: scale(.94);
-}
-
-.counter {
-    font-size: 18px;
-    margin: 18px;
-}
-
-.panel {
-    border: 1px solid #eee;
-    border-radius: 16px;
-    padding: 22px;
-    margin-top: 35px;
-    text-align: left;
-}
-
-.panel h2 {
-    margin-top: 0;
-    font-size: 19px;
-}
-
-.secrets {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
-
-.secret {
-    padding: 13px;
-    background: #f7f7f7;
-    border-radius: 9px;
-    color: #999;
-    font-size: 14px;
-}
-
-.secret.found {
-    background: #eaf7eb;
-    color: #287b35;
-}
-
-button.normal {
-    border: 1px solid #ddd;
-    background: white;
-    border-radius: 9px;
-    padding: 10px 15px;
-    cursor: pointer;
-    margin-top: 12px;
-}
-
-button.normal:hover {
-    background: #f5f5f5;
-}
-
-.message {
-    min-height: 25px;
-    color: #45834b;
-    margin-top: 20px;
-}
-
-footer {
-    margin-top: 50px;
-    text-align: center;
-    color: #aaa;
-    font-size: 13px;
-}
-
-@media(max-width:500px) {
-    h1 { font-size: 42px; }
-    .secrets { grid-template-columns: 1fr; }
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#202020;font-family:Arial,sans-serif}
+header{height:65px;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;padding:0 6%}
+.brand{font-size:23px;font-weight:900;cursor:pointer}
+a{color:inherit;text-decoration:none}
+main{max-width:900px;margin:35px auto;padding:15px}
+h1{font-size:48px;letter-spacing:-3px;margin:12px 0}
+.sub{color:#888;margin-bottom:25px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:25px 0}
+nav button,.btn{border:1px solid #ddd;background:white;border-radius:10px;padding:11px 16px;cursor:pointer;font-weight:700}
+nav button.active,.btn.dark{background:#222;color:white;border-color:#222}
+.page{display:none}
+.page.active{display:block}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.stat,.panel{border:1px solid #eee;border-radius:14px;padding:16px}
+.stat strong{display:block;font-size:24px;margin-top:7px}
+.muted{color:#888;font-size:13px}
+.egg-wrap{text-align:center;padding:22px}
+.egg-button{border:0;background:none;cursor:pointer}
+.egg{width:145px;height:180px;border-radius:50% 50% 46% 46%;background:linear-gradient(135deg,#ffe8b9,#e9c58c);border:3px solid #dcb77d;box-shadow:0 12px 25px #00000012;transition:.12s}
+.egg-button:hover .egg{transform:rotate(-7deg) scale(1.04)}
+.egg-button:active .egg{transform:scale(.94)}
+.click-note{color:#888;margin-top:12px}
+.section-title{font-size:22px;margin:25px 0 14px}
+.upgrade-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.upgrade{border:1px solid #eee;border-radius:13px;padding:16px}
+.upgrade h3{margin:0 0 7px}
+.upgrade p{font-size:13px;color:#888;min-height:30px}
+.upgrade button{width:100%;border:0;background:#222;color:white;padding:11px;border-radius:8px;cursor:pointer}
+.upgrade button:disabled{background:#ddd;color:#777;cursor:not-allowed}
+.collection-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.secret-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:20px}
+.secret-card{border:1px solid #eee;border-radius:12px;padding:10px 5px;text-align:center;min-width:0}
+.secret-logo{height:72px;border-radius:9px;background:#111;color:#111;display:flex;align-items:center;justify-content:center;font-size:35px;font-weight:900;margin-bottom:9px;position:relative;overflow:hidden}
+.secret-logo:after{content:"";position:absolute;width:17px;height:14px;border:3px solid #777;border-radius:4px;top:25px;left:calc(50% - 8px)}
+.secret-logo:before{content:"";position:absolute;width:9px;height:9px;border:3px solid #777;border-bottom:0;border-radius:9px 9px 0 0;top:14px;left:calc(50% - 4px)}
+.secret-card.unlocked .secret-logo{background:#f3f3f3;color:#222}
+.secret-card.unlocked .secret-logo:before,.secret-card.unlocked .secret-logo:after{display:none}
+.secret-name{font-size:12px;font-weight:700;min-height:28px}
+.rarity{font-size:10px;color:#999;margin-top:5px}
+.message{min-height:24px;text-align:center;color:#43814b;font-weight:700}
+.rebirth-box{text-align:center;padding:25px}
+.rebirth-box h2{font-size:27px}
+.rebirth-box button{margin-top:15px}
+footer{text-align:center;color:#aaa;padding:45px 10px;font-size:12px}
+@media(max-width:600px){
+ h1{font-size:39px}
+ .stats{grid-template-columns:1fr 1fr}
+ .secret-grid{grid-template-columns:repeat(4,1fr)}
+ .upgrade-list{grid-template-columns:1fr}
 }
 </style>
 </head>
-
 <body>
-
 <header>
-    <strong>Feal.nun</strong>
-    <a href="./index.html">Back to menu</a>
+ <div class="brand" id="brand">Feal.nun</div>
+ <a href="./index.html">Back to menu</a>
 </header>
 
 <main>
-    <h1>EGGSTER</h1>
-    <div class="subtitle">There are secrets hiding everywhere.</div>
+ <h1>EGGSTER</h1>
+ <div class="sub">Click, upgrade, rebirth and discover all 48 secrets.</div>
 
-    <button class="egg-button" id="egg">
-        <div class="egg"></div>
-    </button>
+ <nav>
+  <button class="active" data-page="play">Play</button>
+  <button data-page="upgrades">Upgrades</button>
+  <button data-page="collection">Secret Collection</button>
+  <button data-page="rebirth">Rebirth</button>
+ </nav>
 
-    <div class="counter">
-        Clicks: <strong id="clicks">0</strong>
-    </div>
+ <div class="message" id="message"></div>
 
-    <div class="message" id="message">Something is waiting to be discovered.</div>
+ <section class="page active" id="play">
+  <div class="stats">
+   <div class="stat"><span class="muted">Egg Coins</span><strong id="coins">0</strong></div>
+   <div class="stat"><span class="muted">Per Click</span><strong id="perClick">1</strong></div>
+   <div class="stat"><span class="muted">Per Second</span><strong id="perSecond">0</strong></div>
+   <div class="stat"><span class="muted">Rebirths</span><strong id="rebirthCount">0</strong></div>
+   <div class="stat"><span class="muted">Secrets Found</span><strong id="secretCount">0 / 48</strong></div>
+   <div class="stat"><span class="muted">Total Clicks</span><strong id="totalClicks">0</strong></div>
+  </div>
 
-    <div class="panel">
-        <h2>Secret collection</h2>
-        <div class="secrets" id="secrets"></div>
-        <p id="progress">0 / 8 secrets found</p>
-        <button class="normal" id="hint">Get a hint</button>
-        <div id="hintText"></div>
-    </div>
+  <div class="egg-wrap">
+   <button class="egg-button" id="eggButton" aria-label="Click the egg">
+    <div class="egg"></div>
+   </button>
+   <div class="click-note">Click the egg to earn Egg Coins.</div>
+  </div>
+  <div class="panel">
+   <strong>Your progress</strong>
+   <p class="muted">Discover secrets by exploring the game. Some are hidden in unexpected places.</p>
+   <button class="btn" id="openCollection">Open Secret Collection</button>
+  </div>
+ </section>
 
-    <footer>
-        EGGSTER — Feal.nun
-    </footer>
+ <section class="page" id="upgrades">
+  <h2 class="section-title">Upgrades</h2>
+  <p class="muted">Spend Egg Coins to improve your egg.</p>
+  <div class="upgrade-list" id="upgradeList"></div>
+ </section>
+
+ <section class="page" id="collection">
+  <div class="collection-top">
+   <div>
+    <h2 class="section-title">Secret Collection</h2>
+    <div class="muted">Find all 48 hidden logos.</div>
+   </div>
+   <strong id="collectionProgress">0 / 48</strong>
+  </div>
+  <div class="secret-grid" id="secretGrid"></div>
+ </section>
+
+ <section class="page" id="rebirth">
+  <div class="panel rebirth-box">
+   <h2>Rebirth</h2>
+   <p>Start again with a permanent earning bonus.</p>
+   <div class="stat">
+    <span class="muted">Rebirth requirement</span>
+    <strong id="rebirthCost">100,000</strong>
+   </div>
+   <p class="muted" id="rebirthBonus">Current bonus: x1</p>
+   <button class="btn dark" id="rebirthButton">REBIRTH</button>
+   <p class="muted">Your discovered secrets will never be lost.</p>
+  </div>
+ </section>
 </main>
 
+<footer>EGGSTER — A Feal.nun experiment</footer>
+
 <script>
-const names = [
-    "Lucky Number",
-    "The Logo",
-    "Hidden Word",
-    "The Silence",
-    "The Footer",
-    "The Name",
-    "The Sequence",
-    "The Corner"
-];
+const SAVE_KEY = "fealnun_eggster_48_v1";
 
-const hints = [
-    "Some numbers are luckier than others.",
-    "Look carefully at the name at the top.",
-    "A small word can open a secret.",
-    "Sometimes doing nothing is important.",
-    "The bottom of the page may hide something.",
-    "Try typing the website name.",
-    "Remember the classic arrow-key pattern.",
-    "One corner is not what it seems."
-];
+const defaultState = {
+ coins:0,
+ totalCoins:0,
+ clicks:0,
+ totalClicks:0,
+ rebirths:0,
+ found:[],
+ upgrades:{},
+ logoClicks:0,
+ collectionVisits:0,
+ playVisits:0,
+ hintClicks:0,
+ typedWords:[],
+ keyPattern:[],
+ idleSeconds:0,
+ eggStreak:0,
+ lastClick:0,
+ specialClicks:0,
+ tabVisits:[],
+ rebirthsMade:0
+};
 
-let found = JSON.parse(localStorage.getItem("fealnun-eggster-v2") || "[]");
-let clicks = 0;
-let logoClicks = 0;
-let footerClicks = 0;
-let hintIndex = 0;
-let lastActivity = Date.now();
-let keySequence = [];
-
-const $ = id => document.getElementById(id);
-
-function save() {
-    localStorage.setItem("fealnun-eggster-v2", JSON.stringify(found));
+let state;
+try {
+ const saved = JSON.parse(localStorage.getItem(SAVE_KEY));
+ state = {...defaultState,...(saved || {})};
+ state.upgrades = {...defaultState.upgrades,...(state.upgrades || {})};
+ state.found = Array.isArray(state.found) ? state.found : [];
+} catch(e) {
+ state = {...defaultState};
 }
 
-function discover(index) {
-    if (found.includes(index)) return;
+const upgrades = [
+ {id:"strong",name:"Stronger Click",desc:"+1 base coin per click.",base:25},
+ {id:"double",name:"Double Click",desc:"Adds more power to every click.",base:150},
+ {id:"golden",name:"Golden Egg",desc:"Boosts your click earnings.",base:750},
+ {id:"auto",name:"Auto Clicker",desc:"Earn coins automatically.",base:1200},
+ {id:"super",name:"Super Clicker",desc:"A powerful click improvement.",base:4500},
+ {id:"lucky",name:"Lucky Egg",desc:"Increases all your earnings.",base:12000},
+ {id:"magnet",name:"Coin Magnet",desc:"Pulls in extra coins every second.",base:30000},
+ {id:"mega",name:"Mega Multiplier",desc:"A huge boost to click power.",base:80000},
+ {id:"finder",name:"Secret Finder",desc:"Unlocks a few extra discovery chances.",base:150000}
+];
 
-    found.push(index);
+const symbols = [
+ "◈","✦","◇","◎","△","□","✧","⬡",
+ "☼","✶","♢","⊙","⌘","♜","♧","♢",
+ "◉","✷","⬢","⌬","♧","✣","◌","✹",
+ "♔","♕","♖","♗","♘","♙","♧","♤",
+ "☾","☽","⊗","⊕","⊛","⌖","⌑","⌗",
+ "✺","✵","✴","✳","❖","◬","◭","◮"
+];
+
+const secretData = [
+ ["First Touch","Common",s=>s.totalClicks>=1],
+ ["Getting Started","Common",s=>s.totalClicks>=10],
+ ["Click Expert","Common",s=>s.totalClicks>=50],
+ ["Busy Hands","Common",s=>s.totalClicks>=100],
+ ["Click Machine","Uncommon",s=>s.totalClicks>=250],
+ ["Egg Addict","Uncommon",s=>s.totalClicks>=500],
+ ["One Thousand","Rare",s=>s.totalClicks>=1000],
+ ["Click Legend","Epic",s=>s.totalClicks>=5000],
+ ["Tiny Fortune","Common",s=>s.totalCoins>=100],
+ ["Coin Collector","Common",s=>s.totalCoins>=1000],
+ ["Big Wallet","Uncommon",s=>s.totalCoins>=10000],
+ ["Treasure Hunter","Rare",s=>s.totalCoins>=100000],
+ ["Millionaire","Epic",s=>s.totalCoins>=1000000],
+ ["First Upgrade","Common",s=>upgradeTotal(s)>=1],
+ ["Shop Visitor","Common",s=>upgradeTotal(s)>=3],
+ ["Upgrade Fan","Uncommon",s=>upgradeTotal(s)>=10],
+ ["Upgrade Master","Rare",s=>upgradeTotal(s)>=25],
+ ["Full Power","Epic",s=>upgradeTotal(s)>=50],
+ ["The Logo","Uncommon",s=>s.logoClicks>=5],
+ ["Secret Menu","Uncommon",s=>s.collectionVisits>=1],
+ ["Explorer","Common",s=>s.tabVisits.length>=3],
+ ["The Return","Common",s=>s.playVisits>=3],
+ ["A Little Patience","Common",s=>s.idleSeconds>=10],
+ ["Silence Master","Rare",s=>s.idleSeconds>=60],
+ ["The Hint","Common",s=>s.hintClicks>=1],
+ ["Curious Mind","Uncommon",s=>s.hintClicks>=5],
+ ["Hidden Word","Uncommon",s=>s.typedWords.includes("egg")],
+ ["Website Name","Rare",s=>s.typedWords.includes("feal")],
+ ["Secret Code","Epic",s=>s.typedWords.includes("secret")],
+ ["Classic Pattern","Rare",s=>s.keyPattern>=1],
+ ["Double Tap","Common",s=>s.eggStreak>=2],
+ ["Quick Fingers","Uncommon",s=>s.eggStreak>=10],
+ ["Lucky Seven","Uncommon",s=>s.totalClicks>=7],
+ ["Thirteen","Rare",s=>s.totalClicks>=13],
+ ["Twenty Five","Rare",s=>s.totalClicks>=25],
+ ["A Hundred Seconds","Epic",s=>s.idleSeconds>=100],
+ ["First Rebirth","Rare",s=>s.rebirths>=1],
+ ["Second Chance","Epic",s=>s.rebirths>=2],
+ ["Rebirth Veteran","Legendary",s=>s.rebirths>=5],
+ ["Rebirth Master","Mythic",s=>s.rebirths>=10],
+ ["Golden Touch","Epic",s=>s.upgrades.golden>=5],
+ ["Auto World","Rare",s=>s.upgrades.auto>=1],
+ ["Mega Power","Legendary",s=>s.upgrades.mega>=1],
+ ["Secret Seeker","Legendary",s=>s.upgrades.finder>=1],
+ ["All Rounder","Epic",s=>upgradeTypes(s)>=5],
+ ["Collector's Pride","Legendary",s=>s.found.length>=24],
+ ["Almost There","Mythic",s=>s.found.length>=40],
+ ["EGGSTER","Mythic",s=>s.found.length>=47],
+ ["The Ultimate Secret","Mythic",s=>s.found.length>=48]
+];
+
+function upgradeTotal(s){
+ return Object.values(s.upgrades).reduce((a,b)=>a+(Number(b)||0),0);
+}
+function upgradeTypes(s){
+ return Object.values(s.upgrades).filter(v=>v>0).length;
+}
+function costOf(u){
+ return Math.floor(u.base*Math.pow(1.65,state.upgrades[u.id]||0));
+}
+function multiplier(){
+ return (1+state.rebirths*0.5) *
+  (1+(state.upgrades.lucky||0)*0.25) *
+  (1+(state.upgrades.magnet||0)*0.1);
+}
+function clickPower(){
+ return (1+
+  (state.upgrades.strong||0)+
+  (state.upgrades.double||0)*3+
+  (state.upgrades.golden||0)*10+
+  (state.upgrades.super||0)*30+
+  (state.upgrades.mega||0)*150) * multiplier();
+}
+function autoPower(){
+ return ((state.upgrades.auto||0)*2+
+  (state.upgrades.magnet||0)*3) * multiplier();
+}
+function save(){
+ localStorage.setItem(SAVE_KEY,JSON.stringify(state));
+}
+function earn(amount){
+ amount=Math.max(0,Math.floor(amount));
+ state.coins+=amount;
+ state.totalCoins+=amount;
+ checkSecrets();
+ update();
+}
+function notify(message){
+ document.getElementById("message").textContent=message;
+}
+function unlock(index){
+ if(state.found.includes(index))return;
+ state.found.push(index);
+ notify("SECRET DISCOVERED: "+secretData[index][0]);
+ save();
+ renderCollection();
+ update();
+}
+function checkSecrets(){
+ secretData.forEach((secret,index)=>{
+  if(!state.found.includes(index) && secret[2](state)){
+   unlock(index);
+  }
+ });
+}
+function update(){
+ document.getElementById("coins").textContent=Math.floor(state.coins).toLocaleString();
+ document.getElementById("perClick").textContent=Math.floor(clickPower()).toLocaleString();
+ document.getElementById("perSecond").textContent=Math.floor(autoPower()).toLocaleString();
+ document.getElementById("rebirthCount").textContent=state.rebirths;
+ document.getElementById("secretCount").textContent=state.found.length+" / 48";
+ document.getElementById("totalClicks").textContent=state.totalClicks.toLocaleString();
+ document.getElementById("collectionProgress").textContent=state.found.length+" / 48";
+ document.getElementById("rebirthCost").textContent=rebirthCost().toLocaleString();
+ document.getElementById("rebirthBonus").textContent="Current bonus: x"+multiplier().toFixed(2);
+ document.getElementById("rebirthButton").disabled=state.coins<rebirthCost();
+ document.getElementById("rebirthButton").style.opacity=state.coins<rebirthCost()?".45":"1";
+}
+function renderUpgrades(){
+ const list=document.getElementById("upgradeList");
+ list.innerHTML="";
+ upgrades.forEach(u=>{
+  const level=state.upgrades[u.id]||0;
+  const cost=costOf(u);
+  const card=document.createElement("div");
+  card.className="upgrade";
+  const title=document.createElement("h3");
+  title.textContent=u.name+" — Lv. "+level;
+  const desc=document.createElement("p");
+  desc.textContent=u.desc;
+  const button=document.createElement("button");
+  button.textContent="Buy — "+cost.toLocaleString()+" coins";
+  button.disabled=state.coins<cost;
+  button.onclick=()=>{
+   if(state.coins<cost)return;
+   state.coins-=cost;
+   state.upgrades[u.id]=level+1;
+   notify(u.name+" upgraded!");
+   checkSecrets();
+   save();
+   renderUpgrades();
+   update();
+  };
+  card.append(title,desc,button);
+  list.appendChild(card);
+ });
+}
+function renderCollection(){
+ const grid=document.getElementById("secretGrid");
+ grid.innerHTML="";
+ secretData.forEach((secret,index)=>{
+  const isFound=state.found.includes(index);
+  const card=document.createElement("div");
+  card.className="secret-card"+(isFound?" unlocked":"");
+  const logo=document.createElement("div");
+  logo.className="secret-logo";
+  logo.textContent=isFound?symbols[index]:"";
+  const name=document.createElement("div");
+  name.className="secret-name";
+  name.textContent=isFound?secret[0]:"Locked Secret #"+(index+1);
+  const rarity=document.createElement("div");
+  rarity.className="rarity";
+  rarity.textContent=isFound?secret[1]:"???";
+  card.append(logo,name,rarity);
+  grid.appendChild(card);
+ });
+}
+function rebirthCost(){
+ return Math.floor(100000*Math.pow(5,state.rebirths));
+}
+function doRebirth(){
+ if(state.coins<rebirthCost())return;
+ state.coins=0;
+ state.upgrades={};
+ state.rebirths++;
+ state.rebirthsMade++;
+ notify("REBIRTH COMPLETE! Your permanent bonus increased.");
+ checkSecrets();
+ save();
+ renderUpgrades();
+ update();
+}
+function showPage(page){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+ document.getElementById(page).classList.add("active");
+ document.querySelector('[data-page="'+page+'"]').classList.add("active");
+ if(!state.tabVisits.includes(page))state.tabVisits.push(page);
+ if(page==="collection")state.collectionVisits++;
+ if(page==="play")state.playVisits++;
+ checkSecrets();
+ save();
+}
+document.querySelectorAll("nav button").forEach(button=>{
+ button.addEventListener("click",()=>showPage(button.dataset.page));
+});
+document.getElementById("openCollection").onclick=()=>showPage("collection");
+
+document.getElementById("eggButton").addEventListener("click",()=>{
+ const now=Date.now();
+ if(now-state.lastClick<900)state.eggStreak++;
+ else state.eggStreak=1;
+ state.lastClick=now;
+ state.clicks++;
+ state.totalClicks++;
+ state.idleSeconds=0;
+ earn(clickPower());
+ checkSecrets();
+ save();
+});
+
+document.getElementById("brand").addEventListener("click",()=>{
+ state.logoClicks++;
+ checkSecrets();
+ save();
+ notify("The logo might be hiding something.");
+});
+
+document.getElementById("rebirthButton").onclick=doRebirth;
+
+document.addEventListener("keydown",event=>{
+ if(event.key.length===1){
+  const key=event.key.toLowerCase();
+  state.typedWords=(state.typedWords||[]);
+  window.secretTyping=(window.secretTyping||"")+key;
+  window.secretTyping=window.secretTyping.slice(-20);
+  ["egg","feal","secret"].forEach(word=>{
+   if(window.secretTyping.endsWith(word) && !state.typedWords.includes(word)){
+    state.typedWords.push(word);
+    notify("A hidden word was discovered.");
+    checkSecrets();
     save();
-    render();
-
-    $("message").textContent = "Secret discovered: " + names[index] + "!";
-}
-
-function render() {
-    $("secrets").innerHTML = "";
-
-    names.forEach((name, i) => {
-        const item = document.createElement("div");
-        item.className = "secret" + (found.includes(i) ? " found" : "");
-        item.textContent = found.includes(i) ? name : "Unknown secret";
-        $("secrets").appendChild(item);
-    });
-
-    $("progress").textContent = found.length + " / 8 secrets found";
-}
-
-$("egg").addEventListener("click", () => {
-    clicks++;
-    $("clicks").textContent = clicks;
-    lastActivity = Date.now();
-
-    if (clicks === 7) discover(0);
+   }
+  });
+ }
+ const pattern=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight"];
+ if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(event.key)){
+  state.keyPattern=(state.keyPattern||[]);
+  state.keyPattern.push(event.key);
+  state.keyPattern=state.keyPattern.slice(-8);
+  if(JSON.stringify(state.keyPattern)===JSON.stringify(pattern)){
+   state.keyPattern=1;
+   notify("Classic pattern discovered!");
+   checkSecrets();
+   save();
+  }
+ }
 });
 
-document.querySelector("header strong").addEventListener("click", () => {
-    logoClicks++;
-    if (logoClicks >= 5) discover(1);
-});
+let lastActivity=Date.now();
+document.addEventListener("click",()=>{lastActivity=Date.now();});
+document.addEventListener("keydown",()=>{lastActivity=Date.now();});
 
-document.querySelector("footer").addEventListener("click", () => {
-    footerClicks++;
-    if (footerClicks >= 3) discover(4);
-});
+setInterval(()=>{
+ const income=autoPower();
+ if(income>0)earn(income);
+ if(Date.now()-lastActivity>=1000){
+  state.idleSeconds++;
+  checkSecrets();
+ }
+ save();
+},1000);
 
-document.addEventListener("keydown", event => {
-    lastActivity = Date.now();
-
-    if (event.key.length === 1) {
-        const key = event.key.toLowerCase();
-
-        if (key === "e" || key === "g") {
-            window.typed = (window.typed || "") + key;
-        } else {
-            window.typed = "";
-        }
-
-        if (window.typed.endsWith("egg")) discover(2);
-        if (window.typed.endsWith("feal")) discover(5);
-    }
-
-    const allowed = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
-
-    if (allowed.includes(event.key)) {
-        keySequence.push(event.key);
-        keySequence = keySequence.slice(-8);
-
-        const answer = [
-            "ArrowUp", "ArrowUp",
-            "ArrowDown", "ArrowDown",
-            "ArrowLeft", "ArrowRight",
-            "ArrowLeft", "ArrowRight"
-        ];
-
-        if (JSON.stringify(keySequence) === JSON.stringify(answer)) {
-            discover(6);
-        }
-    }
-});
-
-const corner = document.createElement("button");
-corner.style.position = "fixed";
-corner.style.top = "0";
-corner.style.left = "0";
-corner.style.width = "24px";
-corner.style.height = "24px";
-corner.style.opacity = "0";
-corner.style.border = "0";
-corner.style.cursor = "pointer";
-corner.setAttribute("aria-label", "Hidden corner");
-corner.onclick = () => discover(7);
-document.body.appendChild(corner);
-
-setInterval(() => {
-    if (Date.now() - lastActivity >= 10000) {
-        discover(3);
-    }
-}, 1000);
-
-$("hint").addEventListener("click", () => {
-    $("hintText").textContent = hints[hintIndex % hints.length];
-    hintIndex++;
-});
-
-render();
+renderUpgrades();
+renderCollection();
+update();
+checkSecrets();
 </script>
-
 </body>
 </html>
